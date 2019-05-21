@@ -4,3 +4,35 @@
 .box-shadow{
    box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)
 }
+.default-size{
+   font-size: 18px !important;
+}
+.inline-default-size{
+   font-size: 16px !important;
+}
+.h1-title{
+   font-size: 22px !important;
+}
+.h2-title{
+   font-size: 20px !important;
+}
+// 配置组件字体大小
+$default: 18px;
+$inlineDefault: 16px;
+$title: 22px;
+$contentTitle: 20px;
+
+#app {
+   font-size: $inlineDefault;
+   // 侧边栏
+   .slide-container-wrap{
+       .el-menu {
+         &-item {
+            font-size: $default
+         }
+       }
+       .el-submenu__title {
+         font-size: $default !important;
+       }
+   }
+}

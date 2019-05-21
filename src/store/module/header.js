@@ -9,7 +9,6 @@ const mutations = {
 };
 const actions = {
   collapseEnter ({ commit }) {
-    debugger;
     commit('SET_ISCOLLAPSE');
   }
 };
