@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-     <div class="my_true_heart"></div>
+     <!-- <div class="my_true_heart"></div> -->
     <h3>坑啊</h3>
       <h3>坑啊</h3>
         <h3>坑啊</h3>

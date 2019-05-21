@@ -2,7 +2,7 @@
   <section class="app-main">
     <transition name="fade-transform" mode="out-in">
       <keep-alive>
-        <!-- <el-scrollbar native="false" wrap-class="scrollbar-wrapper">   -->
+        <!-- <el-scrollbar wrap-class="scrollbar-wrapper"> -->
           <router-view/>
         <!-- </el-scrollbar> -->
       </keep-alive>
@@ -27,36 +27,12 @@ export default {
 <style lang="scss" scoped>
 .app-main {
   /* 50= navbar  50  */
-  min-height: calc(100vh - 50px);
+  min-height: calc(100% - 114px);
   width: 100%;
-  position: absolute;
-  overflow: hidden;
-  margin-top: 50px;
-  top: 117px;
-}
-
-.fixed-header + .app-main {
-  padding-top: 80px;
-}
-
-.hasTagsView {
-  .app-main {
-    /* 84 = navbar + tags-view = 50 + 34 */
-    min-height: calc(100vh - 117px);
-    padding: 20px;
-  }
-
-  .fixed-header + .app-main {
-    padding-top: 84px;
-  }
-}
-</style>
-
-<style lang="scss">
-// fix css style bug in open el-dialog
-.el-popup-parent--hidden {
-  .fixed-header {
-    padding-right: 15px;
-  }
+  margin-top: 15px;
+  // position: absolute;
+  // overflow: hidden;
+  // margin-top: 50px;
+  // top: 117px;
 }
 </style>

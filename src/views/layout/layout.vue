@@ -1,114 +1,68 @@
+
 <template>
-<div>
-<div class="app-wrapper">
-    <div  class="drawer-bg" @click="handleClickOutside" />
-    <Sidebar class="sidebar-container" />
-    <div :class="{hasTagsView:needTagsView}" class="main-container">
-      <div :class="{'fixed-header':fixedHeader}">
-        <Header />
-         
-        <!-- <tags-view v-if="needTagsView" /> -->
-      </div>
-     <Breadcrumb id="breadcrumb-container" class="breadcrumb-container"></Breadcrumb>
-      <app-main />
-      <!-- <right-panel v-if="showSettings">
-        <settings />
-      </right-panel> -->
-    </div>
-  </div>
-  <div class="tj-layout" v-if="false">
-    <!-- :class="classObj" -->
-    <div class="app-wrapper">
-      <!-- <div class="drawer-bg" @click="handleClickOutside"/> -->
-      <el-container>
-        <el-aside class="el-aside-wrap">
-          <sidebar class="sidebar-container"/>
-        </el-aside>
-        <el-container style="width: 100%">
-          <el-header class="fixed-header">
-            <Header class="header-container"></Header>
-          </el-header>
-          <div class="main-container">
-            <el-main>
-              <app-main class="app-container"></app-main>
-            </el-main>
+  <div class="p-layout">
+    <Header></Header>
+    <div
+      class="p-layout-body"
+      :class="{
+        'sider-full': !isCollapse,
+        'sider-mini': isCollapse
+      }">
+      <aside class="p-layout-sider">
+         <Sidebar></Sidebar>
+      </aside>
+      <div class="p-layout-panel">
+        <div class="p-layout-content">
+          <div class="p-layout-container">
+            <div class="p-layout-breadcrumb">
+             <Breadcrumb id="breadcrumb-container" class="breadcrumb-container"></Breadcrumb>
+            </div>
+           <app-main></app-main>
           </div>
-        </el-container>
-      </el-container>
+        </div>
+        <div class="p-layout-footer"> 版权所有 © 2016</div>
+      </div>
     </div>
   </div>
-</div>
-
-
-
 </template>
 <script>
+// import auth from '../auth'
+// import menus from '../nav-config'
 import { Sidebar, Header, appMain } from './components';
 import Breadcrumb from '@/components/Breadcrumb';
+import { mapGetters } from 'vuex';
 export default {
-  name: 'layout',
+  name: 'p-layout',
   data () {
     return {
-      needTagsView: true,
-      fixedHeader: true
+      loggedIn: '',
+      currentRoute: this.$router.history.current.fullPath
     };
+  },
+  created () {
+    // auth.onChange = (loggedIn) => {
+    //   this.loggedIn = loggedIn;
+    // };
   },
   components: {
     Sidebar,
-    Header,
     appMain,
+    Header,
     Breadcrumb
   },
+  computed: {
+    ...mapGetters(['isCollapse'])
+  },
   methods: {
-    handleClickOutside () {}
+    Collapse (val) {
+      this.isCollapse = !val;
+    },
+    handleDropdown (cmd) {
+      if (cmd === 'logout') {
+        // auth.logout();
+        this.$router.replace({ name: 'login' });
+      }
+    }
   }
 };
 </script>
-
-<style lang="scss" scoped>
-@import "~@/styles/mixin.scss";
-@import "~@/styles/verfityMeau.scss";
-.tj-layout {
-  width: 100%;
-  height: 100%;
-}
-.app-wrapper {
-  // @include clearfix;
-  position: relative;
-  height: 100%;
-  width: 100%;
-  .sidebar-container {
-    height: 100%;
-  }
-  &.mobile.openSidebar {
-    position: fixed;
-    top: 0;
-  }
-}
-
-.fixed-header {
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 99 !important;
-  width: calc(100% - #{$sideBarWidth});
-  transition: width 0.28s;
-  padding: 0;
-  line-height: 60px;
-}
-.main-container {
-  padding-top: 60px;
-}
-.breadcrumb-container{
-   position: fixed;
-   left: #{$sideBarWidth};
-   z-index: 98 !important;
-}
-// .hideSidebar .fixed-header {
-//   width: calc(100% - 54px);
-// }
-
-// .mobile .fixed-header {
-//   width: 100%;
-// }
-</style>
