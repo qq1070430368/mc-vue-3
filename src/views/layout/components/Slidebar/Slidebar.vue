@@ -11,7 +11,7 @@
       <el-menu
         :unique-opened="true"
         class="el-menu-vertical-demo"
-        default-active="home"
+        :default-active="activeMenu"
         :router="true"
         :collapse="isCollapse"
         :collapse-transition="false"
@@ -26,7 +26,7 @@
             <i class="el-icon-s-platform"></i>
             <span class="nav-next">首页</span>
           </el-menu-item>
-        <el-submenu :index="menu.name" v-for="(menu, index) in menus" :key="index">
+        <el-submenu :index="menu.name" v-for="(menu, index) in menus"  :key="index" >
           <template slot="title">
             <i v-if="menu.icon" class="el-icon-s-platform"></i>
             <span class="nav-next">{{menu.text}}</span>
@@ -46,6 +46,7 @@
 </template>
 <script>
 // import slideSass from '@/styles/verfityMeau.scss';
+// import { isExternal } from '@/utils/validate';
 import { mapGetters } from 'vuex';
 export default {
   data () {
@@ -60,15 +61,15 @@ export default {
         // },
         {
           name: 'demo',
-          text: '演示',
+          text: '基本组件',
           icon: 'gear',
-          path: '/home',
+          path: '/components',
           children: [
             {
-              name: 'home',
-              path: '/home',
+              name: 'echartsPage',
+              path: '/components/echartsPage',
               icon: 'user',
-              text: '用户管理'
+              text: 'echarts'
             },
             {
               name: 'about',
@@ -104,7 +105,14 @@ export default {
   computed: {
     ...mapGetters(['isCollapse'])
   },
+  methods: {
+    activeMenu () {
+      // console.log(this.$route)
+      return this.$route.path;
+    }
+  },
   mounted () {
+    console.log(this.$route)
     console.log(this.$store.getters.isCollapse, ' 侧边栏');
   }
 };
