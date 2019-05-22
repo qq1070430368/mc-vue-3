@@ -4,7 +4,7 @@
       <!-- <logo v-if="showLogo" :collapse="isCollapse" /> -->
       <!-- @open="handleOpen" -->
       <!-- @close="handleClose" -->
-      <div class="slide-logo">
+      <div class="slide-logo" v-if="!isCollapse">
         <el-image :src="'https://cdn.worldvectorlogo.com/logos/element-ui-1.svg'"></el-image>
       </div>
 

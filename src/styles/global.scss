@@ -35,4 +35,14 @@ $contentTitle: 20px;
          font-size: $default !important;
        }
    }
+   .p-layout-topbar{
+      // header字体
+      font-size: $default
+   }
+   // 面包屑字体大小
+   .app-breadcrumb {
+      span{
+         font-size: $default
+      }
+   }
 }
