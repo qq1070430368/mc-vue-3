@@ -21,7 +21,7 @@
         active-text-color="#ffd04b"
       >
          <el-menu-item
-            index="home"  :class="{activeMenuOn: isCollapse, activeMenuOff: !isCollapse}"
+            index="/home"  :class="{activeMenuOn: isCollapse, activeMenuOff: !isCollapse}"
           >
             <i class="el-icon-s-platform"></i>
             <span class="nav-next">首页</span>
@@ -60,7 +60,7 @@ export default {
         //   path: '/home'
         // },
         {
-          name: 'demo',
+          name: 'components',
           text: '基本组件',
           icon: 'gear',
           path: '/components',
