@@ -72,30 +72,10 @@ export default {
               text: 'echarts'
             },
             {
-              name: 'about',
-              path: '/about',
+              name: 'tablesPage',
+              path: '/components/tablesPage',
               icon: 'file',
-              text: '富文本'
-            }
-          ]
-        },
-        {
-          name: 'demo1',
-          text: '海清',
-          icon: 'gear',
-          path: '/home',
-          children: [
-            {
-              name: 'home',
-              path: '/home',
-              icon: 'user',
-              text: '用户管理2'
-            },
-            {
-              name: 'about',
-              path: '/about',
-              icon: 'file',
-              text: '富文本2'
+              text: 'tablesPage'
             }
           ]
         }
@@ -103,16 +83,16 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['isCollapse'])
-  },
-  methods: {
+    ...mapGetters(['isCollapse']),
     activeMenu () {
-      // console.log(this.$route)
       return this.$route.path;
     }
   },
+  methods: {
+
+  },
   mounted () {
-    console.log(this.$route)
+    console.log(this.$route);
     console.log(this.$store.getters.isCollapse, ' 侧边栏');
   }
 };

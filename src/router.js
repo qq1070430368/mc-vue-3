@@ -36,7 +36,7 @@ export default new Router({
           }
         },
         {
-          path: 'tablesPage',
+          path: '/components/tablesPage',
           component: () => import('@/devTool/elTable/elTable.vue'),
           name: 'tablesPage',
           meta: {
