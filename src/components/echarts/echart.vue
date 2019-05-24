@@ -4,6 +4,7 @@
 <script>
 import echarts from 'echarts';
 import theme from './echarts.theme.json';
+import { debounce } from '@/utils';
 export default {
   data () {
     return {
@@ -20,9 +21,6 @@ export default {
     },
     width: String,
     height: String
-  },
-  created () {
-    this.init();
   },
   watch: {
     options (va) {
@@ -44,15 +42,16 @@ export default {
     },
     init () {
       // 初始化echarts ID
-      const themeJson = JSON.parse(theme);
+      console.log(theme);
+      // const themeJson = JSON.parse(theme);
       if (this.options) {
         this.$nextTick(() => {
           this.$el.setAttribute('id', this.getTimeId());
           this.$el.style.width = this.width ? this.width + 'px' : '100%';
           this.$el.style.height = this.height ? this.height + 'px' : '500px';
-          // 初始化echatrs options
-          echarts.registerTheme('westeros', themeJson);
-          this.echartInit = echarts.init(this.$el);
+          // 初始化echatrs options 配置一个echarts 主题
+          echarts.registerTheme('westeros', theme);
+          this.echartInit = echarts.init(this.$el, 'westeros');
           // 设置echarts 需要的options
           this.echartInit.setOption(this.options);
           // console.log(this.options, 'options')
@@ -61,6 +60,18 @@ export default {
         });
       }
     }
+  },
+  mounted () {
+    this.init();
+    this.__resizeHandler = debounce(() => {
+      if (this.echartInit) {
+        this.echartInit.resize();
+      }
+    }, 100);
+    // 监听侧边栏的变化
+    this.sidebarElm = document.getElementsByClassName('p-sidebar-wrap')[0];
+    debugger;
+    this.sidebarElm && this.sidebarElm.addEventListener('transitionend', this.sidebarResizeHandler);
   }
 };
 </script>

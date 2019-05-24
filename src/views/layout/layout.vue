@@ -9,7 +9,7 @@
         'sider-mini': isCollapse
       }">
       <aside class="p-layout-sider">
-         <Sidebar></Sidebar>
+         <Sidebar class="p-sidebar-wrap"></Sidebar>
       </aside>
       <div class="p-layout-panel">
         <div class="p-layout-content">
