@@ -76,8 +76,34 @@ export default {
               path: '/components/tablesPage',
               icon: 'file',
               text: 'tablesPage'
+            },
+            {
+              name: 'swiperPage',
+              path: '/components/swiperPage',
+              icon: 'file',
+              text: 'swiperPage'
             }
           ]
+        },
+        {
+          path: '/systemManager',
+          name: 'systemManager',
+          icon: 'gear',
+          text: '系统管理',
+          redirect: '/systemManager/departmentManager',
+          children: [
+            {
+              path: '/systemManager/departmentManager',
+              name: 'departmentManager',
+              text: 'department',
+              icon: 'gear',
+              meta: {
+                title: '部门管理',
+                roles: ['admin'] // or you can only set roles in sub nav
+              }
+            }
+          ]
+          // meta: { title: '监管事项', icon: 'dashboard', affix: true }
         }
       ]
     };

@@ -9,7 +9,8 @@ export default {
   data () {
     return {
       id: Math.random(),
-      echartInit: {}
+      echartInit: {},
+      sidebarElm: null
     };
   },
   props: {
@@ -23,20 +24,14 @@ export default {
     height: String
   },
   watch: {
-    options (va) {
-      if (va) {
+    options: {
+      deep: true,
+      handler (val) {
         this.init();
       }
     }
   },
   methods: {
-    resizeLoad () {
-      window.addEventListener('resize', () => {
-        this.echartInit.resize();
-        // 当窗口变化时, 及时能够通知到父组件
-        this.$emit('echartResize', this.echartInit);
-      });
-    },
     getTimeId (length) {
       return String(Symbol(Math.random().toString().substr(3, length) + Date.now()).toString(36));
     },
@@ -55,22 +50,39 @@ export default {
           // 设置echarts 需要的options
           this.echartInit.setOption(this.options);
           // console.log(this.options, 'options')
-          //   窗口变化是. 重置echarts
-          this.resizeLoad();
         });
+      }
+    },
+    sidebarResizeHandler (e) {
+      // 当检测到宽度变化时， 重置echarts
+      if (e.propertyName === 'width') {
+        this.__resizeHandler();
       }
     }
   },
+  beforeDestroy () {
+    if (!this.echartInit) {
+      return;
+    }
+    // 当组件销毁的时候移除监听 移除实例
+    window.removeEventListener('resize', this.__resizeHandler);
+    this.sidebarElm && this.sidebarElm.removeEventListener('transitionend', this.sidebarResizeHandler);
+
+    this.echartInit.dispose();
+    this.echartInit = null;
+  },
   mounted () {
     this.init();
+    // 强制一个函数在某个连续时间段内只执行一次，哪怕它本来会被调用多次 提升性能
     this.__resizeHandler = debounce(() => {
       if (this.echartInit) {
         this.echartInit.resize();
       }
     }, 100);
+    window.addEventListener('resize', this.__resizeHandler);
     // 监听侧边栏的变化
-    this.sidebarElm = document.getElementsByClassName('p-sidebar-wrap')[0];
-    debugger;
+    this.sidebarElm = document.getElementsByClassName('p-layout-topbar')[0];
+    // 通过监听sildebar transitione 来判断是否需要重置echarts
     this.sidebarElm && this.sidebarElm.addEventListener('transitionend', this.sidebarResizeHandler);
   }
 };

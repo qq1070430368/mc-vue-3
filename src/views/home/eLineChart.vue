@@ -41,10 +41,10 @@ export default {
           }
         },
         grid: {
-          left: 10,
-          right: 10,
-          bottom: 20,
           top: 50,
+          left: '1%',
+          right: '1%',
+          bottom: '3%',
           containLabel: true
         },
         tooltip: {

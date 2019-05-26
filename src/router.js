@@ -43,6 +43,34 @@ export default new Router({
             title: '表格控件',
             roles: ['admin'] // or you can only set roles in sub nav
           }
+        },
+        // swiperPage
+        {
+          path: '/components/swiperPage',
+          component: () => import('@/devTool/swiper/swiper.vue'),
+          name: 'swiperPage',
+          meta: {
+            title: '图片轮播',
+            roles: ['admin'] // or you can only set roles in sub nav
+          }
+        }
+      ]
+      // meta: { title: '监管事项', icon: 'dashboard', affix: true }
+    },
+    {
+      path: '/systemManager',
+      name: 'systemManager',
+      redirect: '/systemManager/departmentManager',
+      component: () => import('@/views/layout/layout.vue'),
+      children: [
+        {
+          path: '/systemManager/departmentManager',
+          component: () => import('@/devTool/devementManager/devementManager.vue'),
+          name: 'departmentManager',
+          meta: {
+            title: '部门管理',
+            roles: ['admin'] // or you can only set roles in sub nav
+          }
         }
       ]
       // meta: { title: '监管事项', icon: 'dashboard', affix: true }

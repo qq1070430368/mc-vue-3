@@ -6,9 +6,26 @@
 }
 .bg-white {
    background: rgb(255, 255, 255);
-   padding: 16px 16px 0px;
-   margin-bottom: 32px;
+   padding: 15px 15px 0px;
+   margin-bottom: 15px;
 }
+.b-white {
+   background: rgb(255, 255, 255);
+}
+// 滚动条
+.el-scrollbar__wrap {
+   overflow-x: hidden !important;
+ }
+ .el-scroll-bar {
+   position: relative;
+   height: 100%;
+ }
+ .el-scroll-bar .is-horizontal{
+   display: none !important;
+ }
+ .el-height-full{
+   height: 100%;
+ }
 .default-size{
    font-size: 18px !important;
 }

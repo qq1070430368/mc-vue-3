@@ -13,12 +13,14 @@
       </aside>
       <div class="p-layout-panel">
         <div class="p-layout-content">
+          <!-- <el-scrollbar class="el-scroll-bar"> -->
           <div class="p-layout-container">
             <div class="p-layout-breadcrumb">
              <Breadcrumb id="breadcrumb-container" class="breadcrumb-container"></Breadcrumb>
             </div>
            <app-main></app-main>
           </div>
+          <!-- </el-scrollbar> -->
         </div>
         <div class="p-layout-footer"> 版权所有 © 2016</div>
       </div>

@@ -33,7 +33,7 @@ $cont-padding: 15px;
     font-family: Helvetica;
     font-size: 30px;
     height: $top-height;
-    // transition: $transition;
+    transition: $transition;
     &.sider-mini {
       width: $sider-collapse-width;
     }
@@ -147,6 +147,7 @@ $cont-padding: 15px;
   }
   &-container {
     padding: 15px;
+    height: calc(100% - 30px);
   }
   &-inner {
     padding: 10px;
