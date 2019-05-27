@@ -23,13 +23,24 @@
         </template>
       </el-table-column>
     </el-table>
+     <el-pagination class="mc-pagination"
+      background
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page.sync="currentPage1"
+      :page-size="100"
+      layout="total, prev, pager, next"
+      :total="1000">
+    </el-pagination>
   </div>
 </template>
 <script>
 import exSlot from './ExSlot.js';
 export default {
   data () {
-    return {};
+    return {
+      currentPage1: 1
+    };
   },
   props: {
     // table 核心数据
@@ -65,8 +76,25 @@ export default {
         console.log(va, '监听得到的va');
       }
     }
+  },
+  methods: {
+    handleSizeChange (va) {
+      this.$emit('handleSizeChange', va);
+    },
+    handleCurrentChange (va) {
+      this.$emit('pageChange', va);
+    }
   }
 };
 </script>
 <style lang="scss" scoped>
+.mc-tables{
+  position: relative;
+  overflow: hidden;
+  .mc-pagination{
+    position: absolute;
+    right: 20px;
+    bottom: 0;
+  }
+}
 </style>

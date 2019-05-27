@@ -48,7 +48,7 @@
         </el-col>
       </el-row>
       <!-- 折线图 -->
-      <el-row class="home-line-chat bg-white box-shadow">
+      <el-row class="home-line-chat bg-white box-shadow" style="margin-bottom: 15px">
         <el-col :lg="24">
           <e-line-chart :chart-data="lineChartData"></e-line-chart>
         </el-col>
