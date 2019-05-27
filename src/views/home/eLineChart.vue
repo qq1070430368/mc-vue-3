@@ -4,7 +4,7 @@
     </div>
 </template>
 <script>
-import echarts from '@/components/echarts/echart.vue';
+import echarts from '@/components/Echarts/echart.vue';
 export default {
   data () {
     return {
