@@ -93,9 +93,10 @@ export default {
 .mc-tables{
   position: relative;
   overflow: hidden;
+  margin: 15px;
   .mc-pagination{
     text-align: right;
-    margin-top: 10px;
+    margin-top: 15px;
     // position: absolut/e;
     // right: 20px;
     // bottom: 0;

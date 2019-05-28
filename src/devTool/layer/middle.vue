@@ -1,32 +1,45 @@
 <template>
-  <el-scrollbar class="el-scroll-bar b-white">
-    <div class="p-tables el-height-full">
-      <el-tabs @tab-click="handleClick">
-        <el-tab-pane label="用户管理" name="first"></el-tab-pane>
-        <el-tab-pane label="配置管理" name="second"></el-tab-pane>
-        <el-tab-pane label="角色管理" name="third"></el-tab-pane>
-        <el-tab-pane label="定时任务补偿" name="fourth"></el-tab-pane>
-      </el-tabs>
-      <Table
-        v-loading="false"
-        element-loading-background="rgba(255, 255, 255, 1)"
-        :data="tableData"
-        :row-header="rowHeader"
-        :showSelection="false"
-        @pageChange="pageChange"
-        class="tables-component el-height-full"
-      ></Table>
-      <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    </div>
-  </el-scrollbar>
+  <div class="mc-middle-layer el-height-full">
+    <el-row :gutter="15" class="el-height-full">
+      <el-col :xs="12" :sm="12" :lg="6" class="el-height-full mc-middle-left">
+        <div class="b-white el-height-full">
+          <el-scrollbar class="el-scroll-bar">
+            <div class="mc-scroll-left" style="margin-top: 0px;">
+              <h1>测试去</h1>
+              <h1>测试去</h1>
+            </div>
+          </el-scrollbar>
+        </div>
+      </el-col>
+       
+      <el-col :xs="6" :sm="6" :lg="24" class="el-height-full mc-middle-right">
+          <div class="b-white mc-middle-top">详细信息</div>
+            
+          <div class="b-white mc-middle-bottom">
+             <el-scrollbar class="el-scroll-bar">
+            <Table
+              v-loading="false"
+              element-loading-background="rgba(255, 255, 255, 1)"
+              :data="tableData"
+              :row-header="rowHeader"
+              :showSelection="false"
+              @pageChange="pageChange"
+              class="tables-component el-height-full"
+            ></Table>
+               </el-scrollbar>
+          </div>
+    
+      </el-col>
+       
+    </el-row>
+  </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import Table from '@/components/Table/table.vue';
-import waves from '@/directives/waves'; // waves directive
 export default {
-  name: 'tables',
+  name: 'middle',
   data () {
     return {
       rowHeader: [
@@ -110,15 +123,9 @@ export default {
       alert(row.score);
       // 查看详情的方法
     },
-    isLeft: data => {
-      return true;
-    },
     pageChange (va) {}
   },
-  directives: {
-    waves
-  },
-  created () {
+  mounted () {
     this.tableData = [
       {
         date: '2016-05-02',
@@ -151,28 +158,12 @@ export default {
         score: 88
       },
       {
-        date: '2016-05-01',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1519 弄',
-        score: 83
-      },
-      {
         date: '2016-05-03',
         name: '王小虎',
         address: '上海市普陀区金沙江路 1516 弄',
         score: 85
       }
     ];
-
-    // this.rowHeader = th/is.rowHeader.filter(item => !item.show);
   }
 };
 </script>
-<style lang="scss" scoped>
-.p-tables {
-  padding: 20px;
-  .tables-component {
-    width: 100%;
-  }
-}
-</style>

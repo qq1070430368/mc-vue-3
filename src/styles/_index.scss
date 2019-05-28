@@ -11,9 +11,36 @@ body {
     overflow: auto;
     margin: 0;
 }
-
 .el-loading-spinner {
     .el-icon-loading {
         font-size: 45px;
     }
+}
+
+// 全局公用布局样式
+$leftWidth: 300px;
+
+.mc-middle{
+    &-layer{
+        // width: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+    &-left{
+        width: $leftWidth !important;
+    }
+    &-right{
+        width: calc(100% - 300px) !important;
+    }
+
+    &-top{
+        height: 250px !important;
+    }
+
+    &-bottom{
+        margin-top: 15px;
+        // padding: 15px;
+        height: calc(100% - 265px) !important;
+    }
+   
 }

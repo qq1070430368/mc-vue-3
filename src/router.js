@@ -58,6 +58,52 @@ export default new Router({
       // meta: { title: '监管事项', icon: 'dashboard', affix: true }
     },
     {
+      path: '/fullPage',
+      name: 'fullPage',
+      redirect: '/fullPage/middle',
+      component: () => import('@/views/layout/layout.vue'),
+      children: [
+        {
+          path: '/fullPage/middle',
+          component: () => import('@/devTool/layer/middle.vue'),
+          name: 'middle',
+          meta: {
+            title: '上中下布局',
+            roles: ['admin'] // or you can only set roles in sub nav
+          }
+        },
+        {
+          path: '/fullPage/left',
+          component: () => import('@/devTool/layer/left.vue'),
+          name: 'left',
+          meta: {
+            title: '左右布局',
+            roles: ['admin'] // or you can only set roles in sub nav
+          }
+        },
+        // swiperPage
+        {
+          path: '/components/top',
+          component: () => import('@/devTool/layer/top.vue'),
+          name: 'top',
+          meta: {
+            title: '上下布局',
+            roles: ['admin'] // or you can only set roles in sub nav
+          }
+        },
+        {
+          path: '/components/center',
+          component: () => import('@/devTool/layer/center.vue'),
+          name: 'swiperPage',
+          meta: {
+            title: '居中',
+            roles: ['admin'] // or you can only set roles in sub nav
+          }
+        }
+      ]
+      // meta: { title: '监管事项', icon: 'dashboard', affix: true }
+    },
+    {
       path: '/systemManager',
       name: 'systemManager',
       redirect: '/systemManager/departmentManager',
