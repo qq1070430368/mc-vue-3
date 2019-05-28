@@ -1,5 +1,5 @@
 
-// 配置table 组件自定义内容的组件
+// 配置table 自定义内容的组件
 export default {
   functional: true,
   props: {

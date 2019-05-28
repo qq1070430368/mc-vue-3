@@ -1,7 +1,7 @@
 <template>
   <div class="mc-tables">
     <el-table :data="data" stripe ref="multipleTable" border>
-      <el-table-column type="selection" key="selectio" width="55" v-if="showSelection"></el-table-column>
+      <el-table-column type="selection" key="selection" width="55" v-if="showSelection"></el-table-column>
       <el-table-column type="index" :label="label" key="index" width="70" v-if="showSort"></el-table-column>
       <el-table-column
         v-for="(col, index) in rowHeader"
