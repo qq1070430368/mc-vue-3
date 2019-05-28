@@ -10,6 +10,8 @@
 }
 .b-white {
    background: rgb(255, 255, 255);
+   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+   box-sizing: border-box;
 }
 // 滚动条
 .el-scrollbar__wrap {
@@ -45,6 +47,7 @@ $contentTitle: 20px;
 
 #app {
    font-size: $inlineDefault;
+   box-sizing: border-box;
    // 侧边栏
    .slide-container-wrap{
        .el-menu {

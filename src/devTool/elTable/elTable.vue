@@ -1,13 +1,16 @@
 <template>
-  <div class="p-tables el-height-full b-white">
-    <Table
-      :data="tableData"
-      :row-header="rowHeader"
-      :showSelection="false"
-      class="tables-component el-height-full"
-    ></Table>
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-  </div>
+  <!-- <el-scrollbar class="el-scroll-bar"> -->
+    <div class="p-tables el-height-full b-white">
+      <Table
+        :data="tableData"
+        :row-header="rowHeader"
+        :showSelection="false"
+        @pageChange="pageChange"
+        class="tables-component el-height-full"
+      ></Table>
+      <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
+    </div>
+  <!-- </el-scrollbar> -->
 </template>
 
 <script>
@@ -19,15 +22,8 @@ export default {
     return {
       rowHeader: [
         {
-          prop: 'date',
-          label: '日期'
-        },
-        {
           prop: 'name',
-          label: '名字',
-          render: (h, params) => {
-            return h('span', params.row.sex === 0 ? '男' : '女');
-          }
+          label: '姓名'
         },
         {
           prop: 'address',
@@ -49,8 +45,48 @@ export default {
           }
         },
         {
+          prop: 'date',
+          label: '日期'
+        },
+        {
           prop: 'score',
           label: '得分'
+        },
+        {
+          prop: '',
+          label: '操作',
+          render: (h, params) => {
+            return h('div', [
+              h('el-button', {
+                domProps: {
+                  innerHTML: '查看'
+                },
+                props: {
+                  type: 'warning',
+                  size: 'small'
+                },
+                on: {
+                  click: () => {
+                    this.showDetails(params.row);
+                  }
+                }
+              }),
+              h('el-button', {
+                domProps: {
+                  innerHTML: '删除'
+                },
+                props: {
+                  type: 'danger',
+                  size: 'small'
+                },
+                on: {
+                  click: () => {
+                    this.showDetails(params.row);
+                  }
+                }
+              })
+            ]);
+          }
         }
       ]
     };
@@ -62,6 +98,8 @@ export default {
     showDetails (row) {
       alert(row.score);
       // 查看详情的方法
+    },
+    pageChange (va) {
     }
   },
   created () {
