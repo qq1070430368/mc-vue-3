@@ -5,5 +5,15 @@
 @import './sildebar.scss';
 @import './global.scss';
 @import '../fonts/iconfont.css';
-html, body {height:100%;overflow:auto;margin: 0;}
+html,
+body {
+    height: 100%;
+    overflow: auto;
+    margin: 0;
+}
 
+.el-loading-spinner {
+    .el-icon-loading {
+        font-size: 45px;
+    }
+}

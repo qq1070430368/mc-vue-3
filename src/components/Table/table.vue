@@ -1,6 +1,6 @@
 <template>
   <div class="mc-tables">
-    <el-table :data="data" stripe ref="multipleTable" border>
+    <el-table :data="data" stripe ref="multipleTable" border >
       <el-table-column type="selection" key="selection" width="55" v-if="showSelection"></el-table-column>
       <el-table-column type="index" :label="label" key="index" width="70" v-if="showSort"></el-table-column>
       <el-table-column
@@ -9,7 +9,7 @@
         :prop="col.prop"
         :label="col.label"
       >
-        <template slot-scope="scope">
+        <template slot-scope="scope" >
           <!-- // 使用render 函数自定义内容 -->
           <ex-slot
             v-if="col.render"
@@ -25,12 +25,13 @@
     </el-table>
      <el-pagination class="mc-pagination"
       background
+      hide-on-single-page
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
-      :current-page.sync="currentPage1"
-      :page-size="100"
+      :current-page.sync="pigi.currentPage"
+      :page-size="pigi.pageNumber"
       layout="total, prev, pager, next"
-      :total="1000">
+      :total="pigi.total">
     </el-pagination>
   </div>
 </template>
@@ -39,7 +40,6 @@ import exSlot from './ExSlot.js';
 export default {
   data () {
     return {
-      currentPage1: 1
     };
   },
   props: {
@@ -64,18 +64,20 @@ export default {
     showSort: {
       type: Boolean,
       default: true
+    },
+    pigi: {
+      type: Object,
+      default: () => {
+        return {
+          pageNumber: 8,
+          currentPage: 1,
+          total: 16
+        };
+      }
     }
   },
   components: {
     exSlot
-  },
-  watch: {
-    data: {
-      deep: true,
-      handle (va) {
-        console.log(va, '监听得到的va');
-      }
-    }
   },
   methods: {
     handleSizeChange (va) {
@@ -92,9 +94,14 @@ export default {
   position: relative;
   overflow: hidden;
   .mc-pagination{
-    position: absolute;
-    right: 20px;
-    bottom: 0;
+    text-align: right;
+    margin-top: 10px;
+    // position: absolut/e;
+    // right: 20px;
+    // bottom: 0;
   }
 }
+.el-icon-loading{
+    font-size: 50px;
+  }
 </style>
