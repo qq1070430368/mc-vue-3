@@ -4,14 +4,13 @@ const state = {
 
 const mutations = {
   ADD_ERROR_LOG: (state, log) => {
-      debugger
     state.logs.push(log);
+    console.log(state.logs, 'logs')
   }
 };
 
 const actions = {
   addErrorLog ({ commit }, log) {
-    debugger
     commit('ADD_ERROR_LOG', log);
   }
 };

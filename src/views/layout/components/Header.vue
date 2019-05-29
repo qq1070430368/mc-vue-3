@@ -9,13 +9,7 @@
 
     </div>
     <div class="p-layout-nav">
-         {{logs}}
-      <!-- <el-dropdown class="is-user">
-      <img src="../assets/avatar.jpg" class="p-layout-avatar" alt="">-->
-      <!-- <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="logout">退出</el-dropdown-item>
-          </el-dropdown-menu>
-      </el-dropdown>-->
+         {{logs[0].err.message}}
     </div>
   </div>
 </template>

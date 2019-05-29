@@ -70,6 +70,7 @@ export default {
       searchTitle: '测试标题Search',
       multipleTable: {},
       tableData: [],
+      pigi: {},
       rowHeader: [
         {
           prop: 'name',
@@ -239,6 +240,7 @@ export default {
       pageSize: 6,
       total: this.tableData.length + 50
     };
+    console.log(error)
   }
 };
 </script>

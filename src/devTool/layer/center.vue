@@ -25,52 +25,12 @@
 
 <script>
 // @ is an alias to /src
-import Table from '@/components/Table/table.vue';
 import tableHeight from '@/directives/el-table';
 export default {
   name: 'tables',
   data () {
     return {
-      rowHeader: [
-        {
-          prop: 'date',
-          label: '日期'
-        },
-        {
-          prop: 'name',
-          label: '名字',
-          render: (h, params) => {
-            return h('span', params.row.sex === 0 ? '男' : '女');
-          }
-        },
-        {
-          prop: 'address',
-          label: '家庭住址',
-          render: (h, params) => {
-            return h('el-button', {
-              domProps: {
-                innerHTML: params.row.address
-              },
-              props: {
-                type: 'text'
-              },
-              on: {
-                click: () => {
-                  this.showDetails(params.row);
-                }
-              }
-            });
-          }
-        },
-        {
-          prop: 'score',
-          label: '得分'
-        }
-      ]
     };
-  },
-  components: {
-    Table
   },
   directives: {
     tableHeight
@@ -82,7 +42,7 @@ export default {
     }
   },
   created () {
-    console.log(params);
+    
     this.tableData = [
       {
         date: '2016-05-03',
@@ -181,6 +141,7 @@ export default {
         score: 85
       }
     ];
+    // console.log(params);
   }
 };
 </script>
