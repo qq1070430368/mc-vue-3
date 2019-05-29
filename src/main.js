@@ -6,6 +6,9 @@ import store from './store';
 import 'normalize.css/normalize.css';
 import './styles/_index.scss';
 import './plugins/element.js';
+
+// 捕获异常
+import './utils/err-log'; // error log
 Vue.config.productionTip = false;
 
 new Vue({

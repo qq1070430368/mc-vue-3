@@ -25,6 +25,7 @@
 // @ is an alias to /src
 import Table from '@/components/Table/table.vue';
 import waves from '@/directives/waves'; // waves directive
+// import Title from '@/components/Titlebar/index.vue'
 export default {
   name: 'tables',
   data () {
@@ -170,9 +171,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .p-tables {
-  padding: 20px;
-  .tables-component {
-    width: 100%;
-  }
+  // padding: 20px;
 }
 </style>

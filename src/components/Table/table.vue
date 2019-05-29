@@ -1,13 +1,22 @@
 <template>
   <div class="mc-tables">
-    <el-table :data="data" stripe ref="multipleTable" border >
+    <el-table :data="data" stripe ref="multipleTable" border fit
+      highlight-current-row
+      :header-cell-style="{background:'rgba(242,245,249,1)'}"
+       @selection-change="handleSelectionChange"
+      >
       <el-table-column type="selection" key="selection" width="55" v-if="showSelection"></el-table-column>
       <el-table-column type="index" :label="label" key="index" width="70" v-if="showSort"></el-table-column>
+       <!-- show-overflow-tooltip -->
       <el-table-column
         v-for="(col, index) in rowHeader"
         :key="index"
+        align="center"
         :prop="col.prop"
         :label="col.label"
+        :width="col.width"
+        :minWidth="col.minWidth"
+        :show-overflow-tooltip="col.showTip"
       >
         <template slot-scope="scope" >
           <!-- // 使用render 函数自定义内容 -->
@@ -30,7 +39,7 @@
       @current-change="handleCurrentChange"
       :current-page.sync="pigi.currentPage"
       :page-size="pigi.pageNumber"
-      layout="total, prev, pager, next"
+      layout="total, prev, pager, next, jumper"
       :total="pigi.total">
     </el-pagination>
   </div>
@@ -83,8 +92,13 @@ export default {
     handleSizeChange (va) {
       this.$emit('handleSizeChange', va);
     },
+    // 分页页数改变出发
     handleCurrentChange (va) {
       this.$emit('pageChange', va);
+    },
+    // 表格选中项
+    handleSelectionChange (va) {
+      this.$emit('handleSelectionChange', va, this.$refs.multipleTable);
     }
   }
 };
@@ -93,13 +107,13 @@ export default {
 .mc-tables{
   position: relative;
   overflow: hidden;
-  margin: 15px;
+  padding: 15px;
+  .el-table{
+    font-size: 16px !important;
+  }
   .mc-pagination{
     text-align: right;
-    margin-top: 15px;
-    // position: absolut/e;
-    // right: 20px;
-    // bottom: 0;
+    margin: 15px 0;
   }
 }
 .el-icon-loading{

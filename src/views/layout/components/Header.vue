@@ -6,8 +6,10 @@
     </div>
     <div class="p-layout-collapse" @click="toggleSider">
       <i class="el-icon-s-fold"></i>
+
     </div>
     <div class="p-layout-nav">
+         {{logs}}
       <!-- <el-dropdown class="is-user">
       <img src="../assets/avatar.jpg" class="p-layout-avatar" alt="">-->
       <!-- <el-dropdown-menu slot="dropdown">
@@ -30,7 +32,7 @@ export default {
   components: {
   },
   computed: {
-    ...mapGetters(['isCollapse'])
+    ...mapGetters(['isCollapse', 'logs'])
   },
   methods: {
     toggleSider () {

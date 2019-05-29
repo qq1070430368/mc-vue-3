@@ -5,12 +5,14 @@
 @import './sildebar.scss';
 @import './global.scss';
 @import '../fonts/iconfont.css';
+
 html,
 body {
     height: 100%;
     overflow: auto;
     margin: 0;
 }
+
 .el-loading-spinner {
     .el-icon-loading {
         font-size: 45px;
@@ -18,29 +20,59 @@ body {
 }
 
 // 全局公用布局样式
-$leftWidth: 300px;
+$leftWidth: 280px;
 
-.mc-middle{
-    &-layer{
+.mc-middle {
+    &-layer {
         // width: 100%;
         position: relative;
         overflow: hidden;
     }
-    &-left{
+
+    &-left {
         width: $leftWidth !important;
     }
-    &-right{
-        width: calc(100% - 300px) !important;
+
+    &-right {
+        width: calc(100% - 280px) !important;
     }
 
-    &-top{
+    &-top {
         height: 250px !important;
+        position: relative;
+
+        &::before {
+            content: '';
+            width: 100%;
+            background: rgba(238, 238, 238, 0.527);
+            height: 15px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
     }
 
-    &-bottom{
-        margin-top: 15px;
-        // padding: 15px;
-        height: calc(100% - 265px) !important;
+    &-top300 {
+        height: 300px !important;
+        position: relative;
+
+        &::before {
+            content: '';
+            width: 100%;
+            background: rgba(238, 238, 238, 0.527);
+            height: 15px;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
     }
-   
+
+    &-bottom300 {
+        height: calc(100% - 300px) !important;
+    }
+
+    &-bottom {
+        height: calc(100% - 250px) !important;
+    }
+
 }

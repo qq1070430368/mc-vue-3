@@ -1,45 +1,78 @@
 <template>
-  <div class="p-tables el-height-full b-white">
-    <Table
-      :data="tableData"
-      :row-header="rowHeader"
-      :showSelection="false"
-      :showSort="false"
-      class="tables-component el-height-full"
-    ></Table>
-    <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
+  <div class="mc-middle-layer el-height-full">
+    <el-row  class="el-height-full">
+      <el-col :xs="24" :sm="24" :lg="24" class="el-height-full">
+        <el-scrollbar class="el-scroll-bar bg-white box-shadow">
+          <div class="mc-middle-top300">
+             <Title :title="searchTitle">
+            </Title>
+          </div>
+          <div class="mc-middle-bottom300">
+            <Title :title="title">
+              <!-- // 如果没有title  则会展示出自定义左侧内容 -->
+              <!-- <template v-slot:actionBtn>
+                <el-button v-waves type="primary" size="medium">测试1</el-button>
+              </template> -->
+              <template v-slot:btnGroup>
+                   <el-button v-waves type="primary" size="medium">测试1</el-button>
+                   <el-button v-waves type="primary" size="medium">测试2</el-button>
+              </template>
+            </Title>
+            <Table
+              ref="table"
+              v-loading="false"
+              element-loading-background="rgba(255, 255, 255, .9)"
+              element-loading-spinner="el-icon-loading"
+              :data="tableData"
+              :showSort="false"
+              :row-header="rowHeader"
+              :pigi="pigi"
+              @pageChange="pageChange"
+              @handleSelectionChange="handleSelectionChange"
+              class="tables-component el-height-full"
+            ></Table>
+          </div>
+        </el-scrollbar>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import Table from '@/components/Table/table.vue';
+import Title from '@/components/Titlebar/index.vue';
+import waves from '@/directives/waves';
 export default {
-  name: 'tables',
+  name: 'middle',
   data () {
     return {
+      title: '测试标题TABLE',
+      searchTitle: '测试标题Search',
+      multipleTable: {},
+      tableData: [],
       rowHeader: [
         {
-          prop: 'date',
-          label: '日期'
-        },
-        {
           prop: 'name',
-          label: '名字',
-          render: (h, params) => {
-            return h('span', params.row.sex === 0 ? '男' : '女');
-          }
+          label: '姓名'
         },
         {
           prop: 'address',
           label: '家庭住址',
+          show: true,
+          showTip: true,
+          minWidth: '150px',
           render: (h, params) => {
-            return h('el-button', {
+            return h('span', {
               domProps: {
                 innerHTML: params.row.address
               },
+              class: {
+                'el-link-text': true
+              },
               props: {
                 type: 'text'
+
               },
               on: {
                 click: () => {
@@ -50,56 +83,136 @@ export default {
           }
         },
         {
+          prop: 'date',
+          label: '日期'
+        },
+        {
           prop: 'score',
           label: '得分'
+        },
+        {
+          prop: 'agennd',
+          label: '描述',
+          showTip: true
+        },
+        {
+          prop: '',
+          label: '操作',
+          width: '180px',
+          render: (h, params) => {
+            return h('div', [
+              h('el-button', {
+                domProps: {
+                  innerHTML: '查看'
+                },
+                props: {
+                  type: 'primary',
+                  size: 'mini'
+                },
+                style: {
+                  // v-if 代替的方式
+                  display: params.row.address ? 'inline-block' : 'block'
+                },
+                // waves
+                on: {
+                  click: () => {
+                    this.publishList(params.row);
+                  }
+                }
+              }),
+              h('el-button', {
+                domProps: {
+                  innerHTML: '删除'
+                },
+                props: {
+                  type: 'danger',
+                  size: 'mini'
+                },
+                on: {
+                  click: () => {
+                    this.showDetails(params.row);
+                  }
+                }
+              })
+            ]);
+          }
         }
       ]
     };
   },
   components: {
-    Table
+    Table,
+    Title
+  },
+  directives: {
+    waves
   },
   methods: {
     showDetails (row) {
       alert(row.score);
       // 查看详情的方法
-    }
+    },
+    handleSelectionChange (list, ref) {
+      this.multipleTable = {
+        list,
+        ref
+      };
+    },
+    publishList () {
+      console.log(this.multipleTable, '选中的翔');
+    },
+    pageChange (va) {}
   },
-  created () {
+  mounted () {
     this.tableData = [
       {
-        date: '2016-05-03',
+        date: '2016-05-02',
         name: '王小虎',
-        address: '上海市普213陀',
-        score: 80
+        address: '上海市普陀',
+        score: 80,
+        agennd: '此人极度危险，需仔细排查'
       },
       {
         date: '2016-05-04',
         name: '王小虎',
-        address: '上海市普陀区asdasd金沙江路 1517 弄',
-        score: 88
+        address: '上海市普陀区金沙江路 1517 弄奥术大师多',
+        score: 88,
+        agennd: '此人极度危险，需仔细排查'
       },
       {
         date: '2016-05-01',
         name: '王小虎',
-        address: '上海市普陀asdas区金沙江路 1519 弄',
-        score: 83
+        address: '上海市普陀区金沙江路 1519 弄',
+        score: 83,
+        agennd: '此人极度危险，需仔细排查'
       },
       {
         date: '2016-05-03',
         name: '王小虎',
-        address: '上海市普陀区奥术大师金沙江路 1516 弄',
-        score: 85
+        address: '上海市普陀区金沙江路 1516 弄',
+        score: 85,
+        agennd: '此人极度危险，需仔细排查'
+      },
+      {
+        date: '2016-05-04',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1517 弄',
+        score: 88,
+        agennd: '此人极度危险，需仔细排查'
+      },
+      {
+        date: '2016-05-04',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1517 弄',
+        score: 88,
+        agennd: '此人极度危险，需仔细排查'
       }
     ];
+    this.pigi = {
+      currentPage: 1,
+      pageSize: 6,
+      total: this.tableData.length + 50
+    };
   }
 };
 </script>
-<style lang="scss" scoped>
-.p-tables {
-  padding: 20px;
-  .tables-component {
-    width: 100%;
-  }
-}
-</style>

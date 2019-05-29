@@ -9,7 +9,7 @@
           class="card-panel b-white el-height-full"
           @click="handleSetLineChartData('newVisitis')"
         >
-        
+
           <el-scrollbar class="el-scroll-bar">
             <div class="a" style="margin-top: 0px;">
               <h1>测试去</h1>
