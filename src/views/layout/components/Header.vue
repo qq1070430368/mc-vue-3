@@ -9,14 +9,14 @@
 
     </div>
     <div class="p-layout-nav">
-         {{logs[0].err.message}}
+       <error-log></error-log>
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-
+import errorLog from '@/components/Errorlog/errorLog.vue';
 export default {
   name: 'Header',
   data () {
@@ -24,6 +24,7 @@ export default {
     };
   },
   components: {
+    errorLog
   },
   computed: {
     ...mapGetters(['isCollapse', 'logs'])

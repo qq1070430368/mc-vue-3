@@ -240,7 +240,7 @@ export default {
       pageSize: 6,
       total: this.tableData.length + 50
     };
-    console.log(error)
+    console.log(this.axios.http)
   }
 };
 </script>

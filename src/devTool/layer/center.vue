@@ -141,7 +141,8 @@ export default {
         score: 85
       }
     ];
-    // console.log(params);
+    console.log(params);
+    console.log(params1);
   }
 };
 </script>
