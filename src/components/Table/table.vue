@@ -107,7 +107,7 @@ export default {
 .mc-tables{
   position: relative;
   overflow: hidden;
-  padding: 15px;
+  // padding: 15px;
   .el-table{
     font-size: 16px !important;
   }

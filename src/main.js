@@ -6,6 +6,7 @@ import store from './store';
 // reset browers css
 import 'normalize.css/normalize.css';
 import './styles/_index.scss';
+
 import './plugins/element.js';
 
 // 捕获异常

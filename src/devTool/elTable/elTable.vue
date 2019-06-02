@@ -1,21 +1,29 @@
 <template>
   <el-scrollbar class="el-scroll-bar b-white">
     <div class="p-tables el-height-full">
-      <el-tabs @tab-click="handleClick">
+      <div class="mc-tab-current">
+        <el-tabs @tab-click="handleClick" value="first">
         <el-tab-pane label="用户管理" name="first"></el-tab-pane>
         <el-tab-pane label="配置管理" name="second"></el-tab-pane>
         <el-tab-pane label="角色管理" name="third"></el-tab-pane>
         <el-tab-pane label="定时任务补偿" name="fourth"></el-tab-pane>
       </el-tabs>
+      </div>
+     <div class="mc-tables-component">
       <Table
+        ref="table"
         v-loading="false"
         element-loading-background="rgba(255, 255, 255, 1)"
+        element-loading-text="正在加载中···"
         :data="tableData"
+        :showSort="false"
         :row-header="rowHeader"
-        :showSelection="false"
+        :pigi="pigi"
         @pageChange="pageChange"
-        class="tables-component el-height-full"
+        @handleSelectionChange="handleSelectionChange"
+        class="el-height-full"
       ></Table>
+    </div>
       <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     </div>
   </el-scrollbar>
@@ -100,7 +108,8 @@ export default {
             ]);
           }
         }
-      ]
+      ],
+      pigi: {}
     };
   },
   components: {
@@ -111,8 +120,9 @@ export default {
       alert(row.score);
       // 查看详情的方法
     },
-    isLeft: data => {
-      return true;
+    handleSelectionChange (row) {
+    },
+    handleClick (row, value) {
     },
     pageChange (va) {}
   },
@@ -164,6 +174,11 @@ export default {
         score: 85
       }
     ];
+    this.pigi = {
+      currentPage: 1,
+      pageSize: 6,
+      total: 6
+    };
 
     // this.rowHeader = th/is.rowHeader.filter(item => !item.show);
   }

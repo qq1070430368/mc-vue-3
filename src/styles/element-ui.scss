@@ -1,1 +1,16 @@
 // 重写elementui 样式
+// tab 切换样式
+.mc-tab-current{
+    .el-tabs__nav {
+        padding: 5px 0;
+    }
+    .el-tabs__nav-wrap{
+        padding: 0 15px !important;
+    }
+    .el-tabs__header{
+        margin: 0 !important;
+    }
+    .el-tabs__item{
+        font-size: 16px;
+    }
+}

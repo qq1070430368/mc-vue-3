@@ -18,7 +18,7 @@
         popper-append-to-body
         background-color="#2a323c"
         text-color="#fff"
-        active-text-color="#ffd04b"
+        :active-text-color="theme"
       >
          <el-menu-item
             index="/home"  :class="{activeMenuOn: isCollapse, activeMenuOff: !isCollapse}"
@@ -179,7 +179,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['isCollapse']),
+    ...mapGetters(['isCollapse', 'theme']),
     activeMenu () {
       return this.$route.path;
     }

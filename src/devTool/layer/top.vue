@@ -18,19 +18,21 @@
                    <el-button v-waves type="primary" size="medium">测试2</el-button>
               </template>
             </Title>
-            <Table
-              ref="table"
-              v-loading="false"
-              element-loading-background="rgba(255, 255, 255, .9)"
-              element-loading-spinner="el-icon-loading"
-              :data="tableData"
-              :showSort="false"
-              :row-header="rowHeader"
-              :pigi="pigi"
-              @pageChange="pageChange"
-              @handleSelectionChange="handleSelectionChange"
-              class="tables-component el-height-full"
-            ></Table>
+            <div class="mc-tables-component">
+              <Table
+                ref="table"
+                v-loading="false"
+                element-loading-background="rgba(255, 255, 255, .95)"
+                element-loading-spinner="el-icon-loading"
+                :data="tableData"
+                :showSort="false"
+                :row-header="rowHeader"
+                :pigi="pigi"
+                @pageChange="pageChange"
+                @handleSelectionChange="handleSelectionChange"
+                class="el-height-full"
+              ></Table>
+            </div>
           </div>
         </el-scrollbar>
       </el-col>

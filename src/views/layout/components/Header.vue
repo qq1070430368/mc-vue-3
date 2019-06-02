@@ -10,6 +10,7 @@
     </div>
     <div class="p-layout-nav">
        <error-log></error-log>
+       <theme @change="themeChange"></theme>
     </div>
   </div>
 </template>
@@ -17,6 +18,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import errorLog from '@/components/Errorlog/errorLog.vue';
+import theme from '@/components/ThemeChalk/index.vue';
 export default {
   name: 'Header',
   data () {
@@ -24,7 +26,8 @@ export default {
     };
   },
   components: {
-    errorLog
+    errorLog,
+    theme
   },
   computed: {
     ...mapGetters(['isCollapse', 'logs'])
@@ -32,6 +35,12 @@ export default {
   methods: {
     toggleSider () {
       this.$store.dispatch('header/collapseEnter');
+    },
+    themeChange (val) {
+      this.$store.dispatch('setting/changeSetting', {
+        key: 'theme',
+        value: val
+      });
     }
     // async logout() {
     //   await this.$store.dispatch('user/logout')

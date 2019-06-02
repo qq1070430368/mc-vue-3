@@ -23,6 +23,9 @@ export default {
     };
   },
   methods: {
+  },
+  mounted () {
+    console.log(this.$store.state.setting);
   }
 };
 </script>

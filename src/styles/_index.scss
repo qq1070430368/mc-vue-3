@@ -4,6 +4,7 @@
 @import './transition.scss';
 @import './sildebar.scss';
 @import './global.scss';
+@import './element-ui.scss';
 @import '../fonts/iconfont.css';
 
 html,
@@ -17,6 +18,9 @@ body {
     .el-icon-loading {
         font-size: 45px;
     }
+}
+.mc-tables-component{
+    padding: 15px;
 }
 
 // 全局公用布局样式

@@ -48,13 +48,13 @@
         </el-col>
       </el-row>
       <!-- 折线图 -->
-      <el-row class="home-line-chat bg-white box-shadow" style="margin-bottom: 15px">
+      <el-row class="home-line-chat bg-white box-shadow padding-15" style="margin-bottom: 15px">
         <el-col :lg="24">
           <e-line-chart :chart-data="lineChartData"></e-line-chart>
         </el-col>
       </el-row>
       <!-- 柱状图 -->
-      <el-row class="home-line-chat bg-white box-shadow" style="margin-bottom: 0px">
+      <el-row class="home-line-chat bg-white box-shadow padding-15" style="margin-bottom: 0px">
         <el-col :lg="24">
           <e-bar-chart :chart-data="lineChartData"></e-bar-chart>
         </el-col>

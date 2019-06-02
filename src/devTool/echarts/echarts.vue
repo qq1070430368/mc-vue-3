@@ -1,12 +1,20 @@
 <template>
   <div class="p-tables el-height-full b-white">
-    <Table
-      :data="tableData"
-      :row-header="rowHeader"
-      :showSelection="false"
-      :showSort="false"
-      class="tables-component el-height-full"
-    ></Table>
+    <div class="mc-tables-component">
+      <Table
+        ref="table"
+        v-loading="false"
+        element-loading-background="rgba(255, 255, 255, .95)"
+        element-loading-spinner="el-icon-loading"
+        :data="tableData"
+        :showSort="false"
+        :row-header="rowHeader"
+        :pigi="pigi"
+        @pageChange="pageChange"
+        @handleSelectionChange="handleSelectionChange"
+        class="el-height-full"
+      ></Table>
+    </div>
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
   </div>
 </template>
@@ -97,7 +105,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .p-tables {
-  padding: 20px;
   .tables-component {
     width: 100%;
   }

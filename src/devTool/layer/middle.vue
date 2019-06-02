@@ -7,23 +7,24 @@
             <div class="mc-scroll-left" style="margin-top: 0px;">
               <h1>测试去</h1>
               <h1>测试去</h1>
-                <h1>测试去</h1>
               <h1>测试去</h1>
-                <h1>测试去</h1>
               <h1>测试去</h1>
-                <h1>测试去</h1>
               <h1>测试去</h1>
-
+              <h1>测试去</h1>
+              <h1>测试去</h1>
+              <h1>测试去</h1>
             </div>
           </el-scrollbar>
         </div>
       </el-col>
 
       <el-col :xs="6" :sm="6" :lg="24" class="el-height-full mc-middle-right">
+        <div>
+          
+        </div>
         <el-scrollbar class="el-scroll-bar bg-white box-shadow">
           <div class="mc-middle-top">
-             <Title :title="searchTitle">
-            </Title>
+            <Title :title="searchTitle"></Title>
           </div>
 
           <div class="mc-middle-bottom">
@@ -31,25 +32,27 @@
               <!-- // 如果没有title  则会展示出自定义左侧内容 -->
               <!-- <template v-slot:actionBtn>
                 <el-button v-waves type="primary" size="medium">测试1</el-button>
-              </template> -->
+              </template>-->
               <template v-slot:btnGroup>
-                   <el-button v-waves type="primary" size="medium">测试1</el-button>
-                   <el-button v-waves type="primary" size="medium">测试2</el-button>
+                <el-button v-waves type="primary" size="medium">测试1</el-button>
+                <el-button v-waves type="primary" size="medium">测试2</el-button>
               </template>
             </Title>
-            <Table
-              ref="table"
-              v-loading="false"
-              element-loading-background="rgba(255, 255, 255, .9)"
-              element-loading-spinner="el-icon-loading"
-              :data="tableData"
-              :showSort="false"
-              :row-header="rowHeader"
-              :pigi="pigi"
-              @pageChange="pageChange"
-              @handleSelectionChange="handleSelectionChange"
-              class="tables-component el-height-full"
-            ></Table>
+            <div class="mc-tables-component">
+              <Table
+                ref="table"
+                v-loading="false"
+                element-loading-background="rgba(255, 255, 255, .95)"
+                element-loading-spinner="el-icon-loading"
+                :data="tableData"
+                :showSort="false"
+                :row-header="rowHeader"
+                :pigi="pigi"
+                @pageChange="pageChange"
+                @handleSelectionChange="handleSelectionChange"
+                class="el-height-full"
+              ></Table>
+            </div>
           </div>
         </el-scrollbar>
       </el-col>
@@ -92,7 +95,6 @@ export default {
               },
               props: {
                 type: 'text'
-
               },
               on: {
                 click: () => {
@@ -212,27 +214,6 @@ export default {
         address: '上海市普陀区金沙江路 1516 弄',
         score: 85,
         agennd: '此人极度危险，需仔细排查'
-      },
-      {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄',
-        score: 88,
-        agennd: '此人极度危险，需仔细排查'
-      },
-      {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄',
-        score: 88,
-        agennd: '此人极度危险，需仔细排查'
-      },
-      {
-        date: '2016-05-04',
-        name: '王小虎',
-        address: '上海市普陀区金沙江路 1517 弄',
-        score: 88,
-        agennd: '此人极度危险，需仔细排查'
       }
     ];
     this.pigi = {
@@ -240,7 +221,7 @@ export default {
       pageSize: 6,
       total: this.tableData.length + 50
     };
-    console.log(this.axios.http)
+    console.log(this.axios.http);
   }
 };
 </script>
