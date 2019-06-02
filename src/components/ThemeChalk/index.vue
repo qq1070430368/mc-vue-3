@@ -9,6 +9,7 @@
 
 <script>
 import axios from 'axios';
+import { getSession } from '@/utils/auth.js';
 const version = require('element-ui/package.json').version; // element-ui version from node_modules
 const ORIGINAL_THEME = '#409EFF'; // default color
 
@@ -27,11 +28,14 @@ export default {
   watch: {
     defaultTheme: {
       handler: function (val, oldVal) {
+        
         this.theme = val;
+        console.log(this.theme, '这就是')
       },
       immediate: true
     },
     async theme (val) {
+      console.log(val, '这是什么')
       const oldVal = this.chalk ? this.theme : ORIGINAL_THEME;
       if (typeof val !== 'string') return;
       const themeCluster = this.getThemeCluster(val.replace('#', ''));
@@ -48,9 +52,9 @@ export default {
 
       const getHandler = (variable, id) => {
         return () => {
-          const originalCluster = this.getThemeCluster(ORIGINAL_THEME.replace('#', ''));
+          const originalCluster = this.getThemeCluster(getSession('theme').replace('#', ''));
           const newStyle = this.updateStyle(this[variable], originalCluster, themeCluster);
-
+  
           let styleTag = document.getElementById(id);
           if (!styleTag) {
             styleTag = document.createElement('style');
@@ -80,7 +84,7 @@ export default {
         if (typeof innerText !== 'string') return;
         style.innerText = this.updateStyle(innerText, originalCluster, themeCluster);
       });
-
+      // setSession('theme', val);
       this.$emit('change', val);
 
       $message.close();

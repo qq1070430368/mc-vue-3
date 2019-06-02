@@ -69,7 +69,14 @@ export default {
         },
         {
           prop: 'score',
-          label: '得分'
+          label: '得分',
+          render: (h, params) => {
+            return h('span', {
+              domProps: {
+                innerHTML: this.$options.filters.col(params)
+              }
+            });
+          }
         },
         {
           prop: '',
@@ -111,6 +118,12 @@ export default {
       ],
       pigi: {}
     };
+  },
+  filters: {
+     col (va) {
+       debugger
+       return '111'
+     }
   },
   components: {
     Table
