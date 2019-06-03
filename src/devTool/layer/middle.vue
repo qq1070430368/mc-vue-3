@@ -86,7 +86,7 @@ export default {
           showTip: true,
           minWidth: '150px',
           render: (h, params) => {
-            return h('span', {
+            return h('el-button', {
               domProps: {
                 innerHTML: params.row.address
               },
