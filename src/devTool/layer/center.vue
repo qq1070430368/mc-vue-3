@@ -1,23 +1,18 @@
 <template>
+  <!-- // 应用了v-tableheight 自适应高度 指令 -->
   <div class="p-tables el-height-full b-white">
-     <el-table v-tableHeight
+    <el-table
+      v-tableHeight
+      border
       height="100%"
+      highlight-current-row
+      :header-cell-style="{background:'rgba(242,245,249,1)'}"
       :data="tableData"
-      style="width: 100%">
-      <el-table-column
-        prop="date"
-        label="日期"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="name"
-        label="姓名"
-        width="180">
-      </el-table-column>
-      <el-table-column
-        prop="address"
-        label="地址">
-      </el-table-column>
+      style="width: 100%"
+    >
+      <el-table-column prop="date" label="日期" width="180"></el-table-column>
+      <el-table-column prop="name" label="姓名" width="180"></el-table-column>
+      <el-table-column prop="address" label="地址"></el-table-column>
     </el-table>
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
   </div>
@@ -29,8 +24,7 @@ import tableHeight from '@/directives/el-table';
 export default {
   name: 'tables',
   data () {
-    return {
-    };
+    return {};
   },
   directives: {
     tableHeight
@@ -42,7 +36,6 @@ export default {
     }
   },
   created () {
-    
     this.tableData = [
       {
         date: '2016-05-03',
@@ -141,8 +134,6 @@ export default {
         score: 85
       }
     ];
-    console.log(params);
-    console.log(params1);
   }
 };
 </script>

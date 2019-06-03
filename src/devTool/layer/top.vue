@@ -210,8 +210,6 @@ export default {
         agennd: '此人极度危险，需仔细排查'
       }
     ];
-    this.ment = {};
-    this.ment.push(a);
     this.pigi = {
       currentPage: 1,
       pageSize: 6,

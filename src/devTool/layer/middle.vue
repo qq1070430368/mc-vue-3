@@ -20,7 +20,7 @@
 
       <el-col :xs="6" :sm="6" :lg="24" class="el-height-full mc-middle-right">
         <div>
-          
+
         </div>
         <el-scrollbar class="el-scroll-bar bg-white box-shadow">
           <div class="mc-middle-top">
@@ -221,7 +221,6 @@ export default {
       pageSize: 6,
       total: this.tableData.length + 50
     };
-    console.log(this.axios.http);
   }
 };
 </script>

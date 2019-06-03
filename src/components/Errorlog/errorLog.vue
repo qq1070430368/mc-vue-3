@@ -34,7 +34,7 @@
         </el-table-column>
         <el-table-column label="Stack">
           <template slot-scope="scope">
-            {{ scope.row.err.stack.slice(0, 100) }}
+            {{ scope.row.err.stack.slice(0, 300) }}
           </template>
         </el-table-column>
       </el-table>

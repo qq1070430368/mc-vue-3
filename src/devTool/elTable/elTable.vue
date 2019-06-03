@@ -1,6 +1,7 @@
 <template>
   <el-scrollbar class="el-scroll-bar b-white">
     <div class="p-tables el-height-full">
+      <!-- {{data | formatDate}} -->
       <div class="mc-tab-current">
         <el-tabs @tab-click="handleClick" value="first">
         <el-tab-pane label="用户管理" name="first"></el-tab-pane>
@@ -38,7 +39,8 @@ export default {
   name: 'tables',
   data () {
     return {
-      rowHeader: [
+      data: new Date(),
+      rowTable: [
         {
           prop: 'name',
           label: '姓名'
@@ -120,10 +122,14 @@ export default {
     };
   },
   filters: {
-     col (va) {
-       debugger
-       return '111'
-     }
+    col (va) {
+      return '111';
+    }
+  },
+  computed: {
+    rowHeader () {
+      return this.rowTable;
+    }
   },
   components: {
     Table
@@ -143,6 +149,7 @@ export default {
     waves
   },
   created () {
+    console.log(this.$translate, '存不存在')
     this.tableData = [
       {
         date: '2016-05-02',

@@ -8,11 +8,8 @@
 </template>
 
 <script>
-import axios from 'axios';
-import { getSession } from '@/utils/auth.js';
 const version = require('element-ui/package.json').version; // element-ui version from node_modules
 const ORIGINAL_THEME = '#409EFF'; // default color
-
 export default {
   data () {
     return {
@@ -28,14 +25,11 @@ export default {
   watch: {
     defaultTheme: {
       handler: function (val, oldVal) {
-        
         this.theme = val;
-        console.log(this.theme, '这就是')
       },
       immediate: true
     },
     async theme (val) {
-      console.log(val, '这是什么')
       const oldVal = this.chalk ? this.theme : ORIGINAL_THEME;
       if (typeof val !== 'string') return;
       const themeCluster = this.getThemeCluster(val.replace('#', ''));
@@ -52,9 +46,9 @@ export default {
 
       const getHandler = (variable, id) => {
         return () => {
-          const originalCluster = this.getThemeCluster(getSession('theme').replace('#', ''));
+          const originalCluster = this.getThemeCluster(ORIGINAL_THEME.replace('#', ''));
           const newStyle = this.updateStyle(this[variable], originalCluster, themeCluster);
-  
+
           let styleTag = document.getElementById(id);
           if (!styleTag) {
             styleTag = document.createElement('style');
@@ -84,7 +78,7 @@ export default {
         if (typeof innerText !== 'string') return;
         style.innerText = this.updateStyle(innerText, originalCluster, themeCluster);
       });
-      // setSession('theme', val);
+
       this.$emit('change', val);
 
       $message.close();
@@ -102,11 +96,15 @@ export default {
 
     getCSSString (url, variable) {
       return new Promise(resolve => {
-        axios.get(url)
-          .then(res => {
-            this[variable] = res.data.replace(/@font-face{[^}]+}/, '');
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = () => {
+          if (xhr.readyState === 4 && xhr.status === 200) {
+            this[variable] = xhr.responseText.replace(/@font-face{[^}]+}/, '');
             resolve();
-          });
+          }
+        };
+        xhr.open('GET', url);
+        xhr.send();
       });
     },
 
@@ -163,7 +161,10 @@ export default {
 .theme-picker-dropdown {
   z-index: 99999 !important;
 }
-
+.el-color-picker {
+  height: 30px !important;
+  text-align: right;
+}
 .theme-picker .el-color-picker__trigger {
   height: 26px !important;
   width: 26px !important;

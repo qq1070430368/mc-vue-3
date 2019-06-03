@@ -39,7 +39,7 @@ export function parseTime (time, cFormat) {
     let value = formatObj[key];
     // Note: getDay() returns 0 on Sunday
     // eslint-disable-next-line standard/computed-property-even-spacing
-    if (key === 'a') { return ['日', '一', '二', '三', '四', '五', '六'][value ]; }
+    if (key === 'a') { return ['日', '一', '二', '三', '四', '五', '六'][value]; }
     if (result.length > 0 && value < 10) {
       value = '0' + value;
     }
@@ -175,59 +175,6 @@ export function param2Obj (url) {
   );
 }
 
-/**
-   * @param {string} val
-   * @returns {string}
-   */
-export function html2Text (val) {
-  const div = document.createElement('div');
-  div.innerHTML = val;
-  return div.textContent || div.innerText;
-}
-
-/**
-   * Merges two objects, giving the last one precedence
-   * @param {Object} target
-   * @param {(Object|Array)} source
-   * @returns {Object}
-   */
-export function objectMerge (target, source) {
-  if (typeof target !== 'object') {
-    target = {};
-  }
-  if (Array.isArray(source)) {
-    return source.slice();
-  }
-  Object.keys(source).forEach(property => {
-    const sourceProperty = source[property];
-    if (typeof sourceProperty === 'object') {
-      target[property] = objectMerge(target[property], sourceProperty);
-    } else {
-      target[property] = sourceProperty;
-    }
-  });
-  return target;
-}
-
-/**
-   * @param {HTMLElement} element
-   * @param {string} className
-   */
-export function toggleClass (element, className) {
-  if (!element || !className) {
-    return;
-  }
-  let classString = element.className;
-  const nameIndex = classString.indexOf(className);
-  if (nameIndex === -1) {
-    classString += '' + className;
-  } else {
-    classString =
-        classString.substr(0, nameIndex) +
-        classString.substr(nameIndex + className.length);
-  }
-  element.className = classString;
-}
 
 /**
    * @param {string} type
@@ -319,35 +266,4 @@ export function createUniqueString () {
   const timestamp = +new Date() + '';
   const randomNum = parseInt((1 + Math.random()) * 65536) + '';
   return (+(randomNum + timestamp)).toString(32);
-}
-
-/**
-   * Check if an element has a class
-   * @param {HTMLElement} elm
-   * @param {string} cls
-   * @returns {boolean}
-   */
-export function hasClass (ele, cls) {
-  return !!ele.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
-}
-
-/**
-   * Add class to element
-   * @param {HTMLElement} elm
-   * @param {string} cls
-   */
-export function addClass (ele, cls) {
-  if (!hasClass(ele, cls)) ele.className += ' ' + cls;
-}
-
-/**
-   * Remove class from element
-   * @param {HTMLElement} elm
-   * @param {string} cls
-   */
-export function removeClass (ele, cls) {
-  if (hasClass(ele, cls)) {
-    const reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
-    ele.className = ele.className.replace(reg, ' ');
-  }
 }

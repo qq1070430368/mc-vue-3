@@ -15,9 +15,9 @@ const mutations = {
 
 const actions = {
   changeSetting ({ commit }, data) {
-    // if (data.key === 'theme') {
-     
-    // }
+    if (data.key === 'theme') {
+      setSession(data.key, data.value);
+    }
 
     commit('CHANGE_SETTING', data);
   }
