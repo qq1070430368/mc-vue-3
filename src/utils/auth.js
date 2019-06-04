@@ -1,31 +1,32 @@
 // 存储localStorage时设置前缀
+import Cookie from 'js-cookie';
+const crypto = require('crypto');
 const storePrefix = 'YC_';
+const TokenKey = 'YC-Token';
+
+export function getToken () {
+  // 获取
+  return Cookie.get(TokenKey);
+}
+
+export function setToken (token) {
+// Cookies.set('name', 'value', { expires: 7, path: '' });
+  return Cookie.set(TokenKey, token);
+}
+
+export function removeToken () {
+  return Cookie.remove(TokenKey);
+}
+// MD5 加密
+export function setMd5 (val) {
+  const md5 = crypto.createHash('md5');
+  md5.update(val);
+  return md5.digest('hex');
+}
+
 export function renderTime (date) {
   var dateee = new Date(date).toJSON();
   return new Date(+new Date(dateee) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '');
-}
-export function getCookie (name) {
-  let arr = document.cookie.replace(/\s/g, '').split(';');
-  for (let i = 0; i < arr.length; i++) {
-    let tempArr = arr[i].split('=');
-    if (tempArr[0] === name) {
-      return decodeURIComponent(tempArr[1]);
-    }
-  }
-  return '';
-}
-
-// 设置cookie
-export function setCookie (name, value, days = 0) {
-  let date = new Date();
-  date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-  let expires = date.toUTCString();
-  document.cookie = name + '=' + value + ';expires=' + expires;
-}
-
-// 移除cookie
-export function removeCookie (name) {
-  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT';
 }
 
 // 存储localStorage
@@ -77,53 +78,6 @@ export function checkPass (password) {
   let passwordReq = /^(((?=.*[a-zA-Z])(?=.*\d)[^]{8,16})|((?=.*[^a-zA-Z0-9])(?=.*\d)[^]{8,16})|((?=.*[^a-zA-Z0-9])(?=.*[a-zA-Z])[^]{8,16}))$/;
   let testResult = passwordReq.test(password);
   return testResult;
-}
-// 时间格式化
-export function formatDate (date, fmt) {
-  if (/(y+)/.test(fmt)) {
-    fmt = fmt.replace(RegExp.$1,
-      (new Date(date).getFullYear() + '').substr(4 - RegExp.$1.length));
-  }
-  let o = {
-    'M+': new Date(date).getMonth() + 1,
-    'd+': new Date(date).getDate(),
-    'h+': new Date(date).getHours(),
-    'm+': new Date(date).getMinutes(),
-    's+': new Date(date).getSeconds()
-  };
-  for (let k in o) {
-    if (new RegExp(`(${k})`).test(fmt)) {
-      let str = o[k] + '';
-      fmt = fmt.replace(RegExp.$1,
-        (RegExp.$1.length === 1) ? str : padLeftZero(str));
-    }
-  }
-  return fmt;
-}
-
-function padLeftZero (str) {
-  return ('00' + str).substr(str.length);
-}
-/**
- * 格式化时间字符串，防止解析出错
- * @param str
- * @returns {*}
- */
-export function formatDateStr (str) {
-  if (typeof (str) === 'string') {
-    return str.replace(/-/g, '/');
-  } else {
-    return 0;
-  }
-}
-/**
- * 判断是否为数字
- */
-export function isNumber (str) {
-  if (typeof str === 'number') {
-    return true;
-  }
-  return /^[0-9]+$/.test(str);
 }
 
 export const loadingOptions = {

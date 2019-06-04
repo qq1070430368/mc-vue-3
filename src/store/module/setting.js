@@ -2,7 +2,8 @@ import variables from '@/styles/element-variables.scss';
 import { setSession, getSession } from '@/utils/auth.js';
 
 const state = {
-  theme: getSession('theme') || variables.theme
+  theme: getSession('theme') || variables.theme,
+  isCollapse: getSession('isCollapse') || false
 };
 // 暂且没用 后续如果有什么特殊的全局setting 可以使用该module
 const mutations = {
@@ -10,6 +11,10 @@ const mutations = {
     if (state.hasOwnProperty(key)) {
       state[key] = value;
     }
+  },
+  SET_ISCOLLAPSE (state) {
+    state.isCollapse = !state.isCollapse;
+    setSession('isCollapse', state.isCollapse);
   }
 };
 
@@ -18,8 +23,10 @@ const actions = {
     if (data.key === 'theme') {
       setSession(data.key, data.value);
     }
-
     commit('CHANGE_SETTING', data);
+  },
+  collapseEnter ({ commit }) {
+    commit('SET_ISCOLLAPSE');
   }
 };
 

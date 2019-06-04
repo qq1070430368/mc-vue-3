@@ -7,6 +7,11 @@ Vue.use(Router);
 export default new Router({
   routes: [
     {
+      path: '/login',
+      component: () => import('@/views/login/login'),
+      hidden: true
+    },
+    {
       path: '/',
       name: 'layout',
       redirect: '/home',
@@ -94,7 +99,7 @@ export default new Router({
         {
           path: '/components/center',
           component: () => import('@/devTool/layer/center.vue'),
-          name: 'swiperPage',
+          name: 'center',
           meta: {
             title: '居中',
             roles: ['admin'] // or you can only set roles in sub nav

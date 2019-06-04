@@ -42,7 +42,7 @@ export default {
   },
   methods: {
     toggleSider () {
-      this.$store.dispatch('header/collapseEnter');
+      this.$store.dispatch('setting/collapseEnter');
     }
     // async logout() {
     //   await this.$store.dispatch('user/logout')
