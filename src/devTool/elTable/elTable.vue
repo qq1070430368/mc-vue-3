@@ -149,7 +149,6 @@ export default {
     waves
   },
   created () {
-    console.log(this.$translate, '存不存在')
     this.tableData = [
       {
         date: '2016-05-02',

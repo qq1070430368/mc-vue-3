@@ -186,6 +186,8 @@ export default {
     pageChange (va) {}
   },
   mounted () {
+    console.log(this.$translate, '繁育');
+    debugger
     this.tableData = [
       {
         date: '2016-05-02',

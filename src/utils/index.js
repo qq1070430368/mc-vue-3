@@ -174,8 +174,6 @@ export function param2Obj (url) {
         '"}'
   );
 }
-
-
 /**
    * @param {string} type
    * @returns {Date}

@@ -3,18 +3,20 @@ import { setSession, getSession } from '@/utils/auth.js';
 
 const state = {
   theme: getSession('theme') || variables.theme,
-  isCollapse: getSession('isCollapse') || false
+  isCollapse: false || getSession('isCollapse')
 };
-// 暂且没用 后续如果有什么特殊的全局setting 可以使用该module
+// 特殊的全局头部setting 可以使用该module
 const mutations = {
   CHANGE_SETTING: (state, { key, value }) => {
+    // 设置theme 保存theme
     if (state.hasOwnProperty(key)) {
       state[key] = value;
     }
   },
   SET_ISCOLLAPSE (state) {
+    // 左侧导航的折叠状态
+    setSession('isCollapse', !state.isCollapse);
     state.isCollapse = !state.isCollapse;
-    setSession('isCollapse', state.isCollapse);
   }
 };
 
