@@ -1,59 +1,74 @@
-
-.box-shadow{
+.box-shadow {
    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1)
 }
-.padding-15{
+
+.padding-15 {
    padding: 15px;
 }
-.margin-15{
+
+.margin-15 {
    margin: 15px;
 }
+
 .bg-white {
    background: rgb(255, 255, 255);
    // padding: 15px 15px 0px;
 }
+
 .b-white {
    background: rgb(255, 255, 255);
    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1);
    box-sizing: border-box;
 }
-.text-left{
+
+.text-left {
    text-align: left;
 }
-.text-right{
+
+.text-right {
    text-align: right;
 }
+
 // 普通文字颜色link
-.el-link-text{
+.el-link-text {
    color: #409EFF;
    cursor: pointer;
 }
+
 // 滚动条
 .el-scrollbar__wrap {
    overflow-x: hidden !important;
- }
- .el-scroll-bar {
+}
+
+.el-scroll-bar {
    position: relative;
    height: 100%;
- }
- .el-scroll-bar .is-horizontal{
+}
+
+.el-scroll-bar .is-horizontal {
    display: none !important;
- }
- .el-height-full{
+}
+
+.el-height-full {
    height: 100%;
- }
-.default-size{
+}
+
+.default-size {
    font-size: 18px !important;
 }
-.inline-default-size{
+
+.inline-default-size {
    font-size: 16px !important;
 }
-.h1-title{
+
+.h1-title {
    font-size: 22px !important;
 }
-.h2-title{
+
+.h2-title {
    font-size: 20px !important;
 }
+
 // 配置组件字体大小
 $default: 18px;
 $inlineDefault: 16px;
@@ -63,24 +78,28 @@ $contentTitle: 20px;
 #app {
    font-size: $inlineDefault;
    box-sizing: border-box;
+
    // 侧边栏
-   .slide-container-wrap{
-       .el-menu {
+   .slide-container-wrap {
+      .el-menu {
          &-item {
             font-size: $default
          }
-       }
-       .el-submenu__title {
+      }
+
+      .el-submenu__title {
          font-size: $default !important;
-       }
+      }
    }
-   .p-layout-topbar{
+
+   .p-layout-topbar {
       // header字体
       font-size: $default
    }
+
    // 面包屑字体大小
    .app-breadcrumb {
-      span{
+      span {
          font-size: $default
       }
    }

@@ -51,11 +51,11 @@ export default new Router({
         },
         // swiperPage
         {
-          path: '/components/swiperPage',
-          component: () => import('@/devTool/swiper/swiper.vue'),
-          name: 'swiperPage',
+          path: '/components/leafletPage',
+          component: () => import('@/devTool/leaflet/leaflet.vue'),
+          name: 'leafletPage',
           meta: {
-            title: '图片轮播',
+            title: 'leaflet地图',
             roles: ['admin'] // or you can only set roles in sub nav
           }
         }

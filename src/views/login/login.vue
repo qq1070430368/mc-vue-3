@@ -8,6 +8,7 @@
       class="login-form"
       auto-complete="on"
       label-position="left"
+      @submit.native.prevent
     >
       <div class="title-container">
           <h2>动态管理系统</h2>
@@ -26,6 +27,7 @@
           type="text"
           tabindex="1"
           auto-complete="on"
+           @keyup.enter.native="handleLogin('loginForm')"
         />
       </el-form-item>
         <el-form-item prop="password">
@@ -40,6 +42,7 @@
             placeholder="密码"
             name="password"
             tabindex="2"
+             @keyup.enter.native="handleLogin('loginForm')"
           />
         </el-form-item>
       <el-form-item prop="checkcode">
@@ -54,17 +57,20 @@
           type="text"
           tabindex="3"
           auto-complete="on"
+           @keyup.enter.native="handleLogin('loginForm')"
         />
          <el-image :src="src" title='重新加载' class="authLoad-img error-img" @click.native="fetchAuthCode"></el-image>
       </el-form-item>
 
       <div clsas="login-btn" style="margin:0 auto; text-align: center">
         <el-button
+          v-focus
           :loading="loading"
           type="primary"
           align="center"
           style="width:70%;margin-bottom:30px;"
           @click.native.prevent="handleLogin('loginForm')"
+          @keyup.enter.native="handleLogin('loginForm')"
         >登录</el-button>
       </div>
     </el-form>
@@ -104,6 +110,13 @@ export default {
       redirect: undefined,
       src: ''
     };
+  },
+  directives: {
+    focus: {
+      inserted: function (el) {
+        el.focus();
+      }
+    }
   },
   mounted () {
     if (this.loginForm.userid === '') {

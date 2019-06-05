@@ -35,7 +35,7 @@ export default {
       // 查看详情的方法
     }
   },
-  created () {
+  mounted () {
     this.tableData = [
       {
         date: '2016-05-03',

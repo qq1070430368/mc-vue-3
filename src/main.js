@@ -6,6 +6,7 @@ import store from './store';
 import 'normalize.css/normalize.css';
 import './styles/_index.scss';
 import './plugins/element.js';
+import 'leaflet';
 import '@/utils/refshStyle.js'; // 主题
 import './utils/err-log'; // error log // 捕获异常
 import './filters'; // 全局公用filters

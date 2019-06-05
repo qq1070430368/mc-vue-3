@@ -87,13 +87,13 @@ export default {
               text: 'tablesPage'
             },
             {
-              name: 'swiperPage',
-              path: '/components/swiperPage',
+              name: 'leafletPage',
+              path: '/components/leafletPage',
               icon: 'file',
               meta: {
-                title: 'swiperPage'
+                title: 'leafletPage'
               },
-              text: 'swiperPage'
+              text: 'leafletPage'
             }
           ]
         },
